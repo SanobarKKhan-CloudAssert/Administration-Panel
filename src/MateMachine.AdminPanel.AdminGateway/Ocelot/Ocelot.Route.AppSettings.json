@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_app_settings",
+      "DownstreamPathTemplate": "/api/admin/app-settings/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/app-settings/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

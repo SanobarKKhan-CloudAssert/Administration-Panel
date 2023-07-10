@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_videosd",
+      "DownstreamPathTemplate": "/api/admin/video-speed-dating/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/video-speed-dating/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

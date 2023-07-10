@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Collection" Version="7.0.1" />
+    <PackageReference Include="MateMachine.Data" Version="1.0.0.14" />
+   </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_landing_api",
+      "DownstreamPathTemplate": "/api/admin/landing/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/landing/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

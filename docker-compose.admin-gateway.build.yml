@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  matemachine.admin-panel.gateway:
+    build:
+      context: .
+      dockerfile: ./src/MateMachine.AdminPanel.AdminGateway/Dockerfile
+      args:
+        NUGET_SOURCE: ${NUGET_SOURCE}
+        PIPELINE_USER: ${PIPELINE_USER}
+        PIPELINE_TOKEN: ${PIPELINE_TOKEN}

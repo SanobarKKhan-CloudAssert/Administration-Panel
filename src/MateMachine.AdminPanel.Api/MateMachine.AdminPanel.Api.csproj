@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MateMachine.AdminPanel.Domain\MateMachine.AdminPanel.Domain.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Repository\MateMachine.AdminPanel.Infrastructure.csproj" />
+    <ProjectReference Include="..\MateMachine.AdminPanel.Application\MateMachine.AdminPanel.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MateMachine.Extensions.AspNet.MessageBus" Version="1.6.83-alpha" />
+    <PackageReference Include="MateMachine.Identity.ClientSdk" Version="1.2.44-beta" />
+  </ItemGroup>
+
+  <!-- <ItemGroup>
+    <ProjectReference Include="..\MateMachine.Admin.Contract\MateMachine.Admin.Contract.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Dto\MateMachine.Admin.Dto.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Etl\MateMachine.Admin.Etl.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Exceptions\MateMachine.Admin.Exceptions.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Repository\MateMachine.Admin.Repositories.csproj" />
+    <ProjectReference Include="..\MateMachine.Admin.Service\MateMachine.Admin.Service.csproj" />
+  </ItemGroup> -->
+
+ 
+
+
+</Project>

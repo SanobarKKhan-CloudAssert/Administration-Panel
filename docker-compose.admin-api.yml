@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  matemachine.admin-panel.api:
+    container_name: matemachine.admin-panel.api
+    image: "${DOCKER_REGISTRY}matemachine-admin-panel-api"
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      microservices_net:
+        aliases:
+          - matemachine.admin-panel.api

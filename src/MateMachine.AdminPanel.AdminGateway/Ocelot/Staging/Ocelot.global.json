@@ -1,0 +1,35 @@
+{
+  "GlobalConfiguration": {
+    "RequestIdKey": "RequestId",
+    "RouteIsCaseSensitive": false,
+    "LoadBalancerOptions": {
+      "Type": "LeastConnection"
+    },
+    "DownstreamScheme": "http",
+    "ServiceDiscoveryProvider": {
+      "Scheme": "http",
+      "Host": "matemachine.service-discovery",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "UpstreamHeaderTransform": {
+      "X-Forwarded-For": "{RemoteIpAddress}",
+      "X-Forwarded-Proto": "{Scheme}",
+      "X-Forwarded-Host": "{Host}",
+      "Origin": "{BaseUrl}"
+    },
+    "DownstreamHeaderTransform": {
+      "Location": "{DownstreamBaseUrl}, {BaseUrl}"
+    },
+    "RateLimitOptions": {
+      "ClientWhitelist": [],
+      "EnableRateLimiting": true,
+      "Period": "1s",
+      "PeriodTimespan": 1,
+      "Limit": 5
+    },
+    "QoSOptions": {
+      "TimeoutValue": 120000
+    }
+  }
+}

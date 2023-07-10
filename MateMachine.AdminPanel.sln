@@ -1,0 +1,84 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MateMachine.AdminPanel.Api", "src\MateMachine.AdminPanel.Api\MateMachine.AdminPanel.Api.csproj", "{EDD89710-446D-4BC6-8C49-76DCC4A62E79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MateMachine.AdminPanel.Domain", "src\MateMachine.AdminPanel.Domain\MateMachine.AdminPanel.Domain.csproj", "{40D8AAE2-1636-4DF4-A9D5-E0B069CD16E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MateMachine.AdminPanel.Infrastructure", "src\MateMachine.Admin.Repository\MateMachine.AdminPanel.Infrastructure.csproj", "{67378EB4-1AD0-418D-97E6-5D13712D0FA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MateMachine.AdminPanel.Application", "src\MateMachine.AdminPanel.Application\MateMachine.AdminPanel.Application.csproj", "{25E40971-E4D7-48C6-8CE7-F0E552416CAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gitlab", "gitlab", "{27F4A863-1DFF-4803-8DC3-9BE80D7DC26D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitlab-ci.yml = .gitlab-ci.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{026490A1-5E7A-4DED-9992-2621D37FC3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MateMachine.AdminPanel.IntegrationTests", "tests\MateMachine.AdminPanel.IntegrationTests\MateMachine.AdminPanel.IntegrationTests.csproj", "{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MateMachine.AdminPanel.UnitTests", "tests\MateMachine.AdminPanel.UnitTests\MateMachine.AdminPanel.UnitTests.csproj", "{2E05F652-17C1-4611-AB2F-CC4D9FC0C295}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BFF", "BFF", "{7EED8585-235C-425F-9FF5-8D3A0952B920}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MateMachine.AdminPanel.AdminGateway", "src\MateMachine.AdminPanel.AdminGateway\MateMachine.AdminPanel.AdminGateway.csproj", "{E548C01D-863C-48CD-B380-14FEE6D1BF54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sdks", "sdks", "{A7A81388-F996-4D9D-B2E8-25275C05C8AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MateMachine.AdminPanel.ClientSdk", "src\sdks\MateMachine.AdminPanel.ClientSdk\MateMachine.AdminPanel.ClientSdk.csproj", "{59B32236-27AC-4911-8240-C1AD8F17201A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDD89710-446D-4BC6-8C49-76DCC4A62E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD89710-446D-4BC6-8C49-76DCC4A62E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD89710-446D-4BC6-8C49-76DCC4A62E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD89710-446D-4BC6-8C49-76DCC4A62E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D8AAE2-1636-4DF4-A9D5-E0B069CD16E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D8AAE2-1636-4DF4-A9D5-E0B069CD16E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D8AAE2-1636-4DF4-A9D5-E0B069CD16E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D8AAE2-1636-4DF4-A9D5-E0B069CD16E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67378EB4-1AD0-418D-97E6-5D13712D0FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67378EB4-1AD0-418D-97E6-5D13712D0FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67378EB4-1AD0-418D-97E6-5D13712D0FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67378EB4-1AD0-418D-97E6-5D13712D0FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E40971-E4D7-48C6-8CE7-F0E552416CAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E40971-E4D7-48C6-8CE7-F0E552416CAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E40971-E4D7-48C6-8CE7-F0E552416CAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E40971-E4D7-48C6-8CE7-F0E552416CAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E05F652-17C1-4611-AB2F-CC4D9FC0C295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E05F652-17C1-4611-AB2F-CC4D9FC0C295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E05F652-17C1-4611-AB2F-CC4D9FC0C295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E05F652-17C1-4611-AB2F-CC4D9FC0C295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E548C01D-863C-48CD-B380-14FEE6D1BF54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E548C01D-863C-48CD-B380-14FEE6D1BF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E548C01D-863C-48CD-B380-14FEE6D1BF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E548C01D-863C-48CD-B380-14FEE6D1BF54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B32236-27AC-4911-8240-C1AD8F17201A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B32236-27AC-4911-8240-C1AD8F17201A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B32236-27AC-4911-8240-C1AD8F17201A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B32236-27AC-4911-8240-C1AD8F17201A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FED7514-EC59-41E3-B585-7B7C6CB8FF0B}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1EDB991F-BDF3-4DDB-B0C9-9CEFF477DDA7} = {026490A1-5E7A-4DED-9992-2621D37FC3C6}
+		{2E05F652-17C1-4611-AB2F-CC4D9FC0C295} = {026490A1-5E7A-4DED-9992-2621D37FC3C6}
+		{E548C01D-863C-48CD-B380-14FEE6D1BF54} = {7EED8585-235C-425F-9FF5-8D3A0952B920}
+		{59B32236-27AC-4911-8240-C1AD8F17201A} = {A7A81388-F996-4D9D-B2E8-25275C05C8AC}
+	EndGlobalSection
+EndGlobal

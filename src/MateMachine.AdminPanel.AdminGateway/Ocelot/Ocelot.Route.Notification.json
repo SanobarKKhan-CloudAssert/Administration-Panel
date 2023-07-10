@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_notification",
+      "DownstreamPathTemplate": "/api/admin/notification/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/notification/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

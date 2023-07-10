@@ -1,0 +1,97 @@
+{
+  "Routes": [
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/mateapi/{catchAll}",
+      "UpstreamPathTemplate": "/mateapi/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Options",
+        "Patch",
+        "Delete"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/bridge/{catchAll}",
+      "UpstreamPathTemplate": "/bridge/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Options",
+        "Patch",
+        "Delete"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/profile/{catchAll}",
+      "UpstreamPathTemplate": "/profile/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/promo/{catchAll}",
+      "UpstreamPathTemplate": "/promo/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/payment/converge/report/{catchAll}",
+      "UpstreamPathTemplate": "/payment/converge/report/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Post"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamPathTemplate": "/auth/{catchAll}",
+      "UpstreamPathTemplate": "/auth/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamScheme": "ws",
+      "DownstreamPathTemplate": "/hub/{catchAll}",
+      "UpstreamPathTemplate": "/hub/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Patch",
+        "Options",
+        "Delete"
+      ],
+      "QoSOptions": {
+        "TimeoutValue": 320000
+      }
+    },
+    {
+      "ServiceName": "mate_monolith",
+      "DownstreamScheme": "ws",
+      "DownstreamPathTemplate": "/hub",
+      "UpstreamPathTemplate": "/hub",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post",
+        "Put",
+        "Patch",
+        "Options",
+        "Delete"
+      ],
+      "QoSOptions": {
+        "TimeoutValue": 320000
+      }
+    }
+  ]
+}

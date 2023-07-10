@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_event",
+      "DownstreamPathTemplate": "/api/admin/event/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/event/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "Routes": [
+    {
+      "ServiceName": "mate_app_settings",
+      "DownstreamPathTemplate": "/swagger/mate_app_settings/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_app_settings/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_videosd",
+      "DownstreamPathTemplate": "/swagger/mate_videosd/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_videosd/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_textsd",
+      "DownstreamPathTemplate": "/swagger/mate_textsd/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_textsd/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_silver_core",
+      "DownstreamPathTemplate": "/swagger/mate_silver_core/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_silver_core/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_chat",
+      "DownstreamPathTemplate": "/swagger/mate_chat/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_chat/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_socket",
+      "DownstreamPathTemplate": "/swagger/mate_socket/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_socket/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_event",
+      "DownstreamPathTemplate": "/swagger/mate_event/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_event/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_landing_api",
+      "DownstreamPathTemplate": "/swagger/mate_landing_api/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_landing_api/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_notification",
+      "DownstreamPathTemplate": "/swagger/mate_notification/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_notification/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_static",
+      "DownstreamPathTemplate": "/swagger/mate_static/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_static/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_identity",
+      "DownstreamPathTemplate": "/swagger/mate_identity/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_identity/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_identity_admin",
+      "DownstreamPathTemplate": "/swagger/mate_identity_admin/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_identity_admin/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    },
+    {
+      "ServiceName": "mate_identity_admin_api",
+      "DownstreamPathTemplate": "/swagger/mate_identity_admin_api/admin/swagger.json",
+      "UpstreamPathTemplate": "/swagger/mate_identity_admin_api/admin/swagger.json",
+      "UpstreamHttpMethod": [
+        "Get"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+name: Admin Panel Workflow file
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BUILD_PATH: './publish/${GITHUB_RUN_ID}'
+  BUILD_CONFIG: 'Release'
+  API_IMAGE_NAME: 'matemachine-admin-panel-api'
+  API_IMAGE_ID: "ghcr.io/mm-matemachine/devops/matemachine-admin-panel-api:latest"
+  GATEWAY_IMAGE_NAME: 'matemachine-admin-panel-gateway'
+  GATEWAY_IMAGE_ID: "ghcr.io/mm-matemachine/devops/matemachine-admin-panel-gateway:latest"
+  SOLUTION_FILE: 'MateMachine.AdminPanel.sln'
+  COVERAGE_FLAG: "XPlat Code Coverage"
+  LOGGER_FLAG: "junit;LogFilePath=${{ github.workspace }}/junit/junit-test-result.xml;MethodFormat=Class;FailureBodyFormat=Verbose"
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    services:
+      matemachine.sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: "Pa33word_123"
+        ports:
+          - 1433:1433
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          az --version
+
+      - uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "env-vairable-vault"
+          secrets: 'NUGET-SOURCE,NUGET-API-KEY,PIPELINE-USER,PIPELINE-TOKEN'
+        id: secretValues
+
+      - run: |
+          dotnet nuget locals all --clear
+          dotnet nuget add source --username ${{ steps.secretValues.outputs.PIPELINE-USER }} --password ${{ steps.secretValues.outputs.PIPELINE-TOKEN }} --store-password-in-clear-text --name github "${{ steps.secretValues.outputs.NUGET-SOURCE }}"
+          export INTEGRATION_TESTS_USE_PIPELINE_SERVICES=${INTEGRATION_TESTS_USE_PIPELINE_SERVICES}
+          dotnet test $SOLUTION_FILE --configuration $BUILD_CONFIG --collect "$COVERAGE_FLAG" --test-adapter-path:. --logger:"$LOGGER_FLAG" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+  
+  build-deploy:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          az --version
+
+      - uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "env-vairable-vault"
+          secrets: 'PIPELINE-USER,PIPELINE-TOKEN,DOCKER-USERNAME,DOCKER-PASSWORD,STAGING-SSH-HOST,NUGET-SOURCE'
+        id: secretValues
+
+      - name: Add SSH Agent
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.STAGING_PRIVATE_KEY }}
+
+      - name: Docker Login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ steps.secretValues.outputs.DOCKER-USERNAME }}
+          password: ${{ steps.secretValues.outputs.DOCKER-PASSWORD }}
+
+      - name: Build
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ steps.secretValues.outputs.STAGING-SSH-HOST }}
+          docker context create remote --docker "host=ssh://${{ steps.secretValues.outputs.STAGING-SSH-HOST }}:22"
+          docker context use remote
+          unset DOCKER_HOST
+
+          cp .env build.env
+          echo "NUGET_SOURCE=${{ steps.secretValues.outputs.NUGET-SOURCE }}" >> build.env
+          echo "PIPELINE_USER=${{ steps.secretValues.outputs.PIPELINE-USER }}" >> build.env
+          echo "PIPELINE_TOKEN=${{ steps.secretValues.outputs.PIPELINE-TOKEN }}" >> build.env
+          docker-compose -p matemachine-admin-panel -f docker-compose.yml -f docker-compose.admin-api.yml -f docker-compose.admin-api.build.yml -f docker-compose.admin-gateway.yml -f docker-compose.admin-gateway.build.yml --env-file build.env build
+
+      - name: Push the image matemachine-admin-panel-*:latest
+        run: |
+          docker tag ${API_IMAGE_NAME}:latest $API_IMAGE_ID
+          docker push $API_IMAGE_ID
+          docker tag ${GATEWAY_IMAGE_NAME}:latest $GATEWAY_IMAGE_ID
+          docker push $GATEWAY_IMAGE_ID
+
+      - name: Deploy matemachine.chat-* using `docker compose up`
+        run: |
+          docker pull $API_IMAGE_ID
+          docker pull $GATEWAY_IMAGE_ID
+          docker-compose -p matemachine-admin-panel -f docker-compose.yml -f docker-compose.admin-api.yml -f docker-compose.admin-gateway.yml --context remote up -d
+
+  client-sdk:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: [ tests, build-deploy ]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+          az --version
+
+      - uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: Azure/get-keyvault-secrets@v1
+        with:
+          keyvault: "env-vairable-vault"
+          secrets: 'NUGET-SOURCE,NUGET-API-KEY,PIPELINE-USER,PIPELINE-TOKEN'
+        id: secretValues
+
+      - name: Build MateMachine.AdminPanel.ClientSdk
+        run: |
+          dotnet nuget locals all --clear
+          dotnet nuget add source --username ${{ steps.secretValues.outputs.PIPELINE-USER }} --password ${{ steps.secretValues.outputs.PIPELINE-TOKEN }} --store-password-in-clear-text --name github "${{ steps.secretValues.outputs.NUGET-SOURCE }}"
+          dotnet build $SOLUTION_FILE --configuration Release
+          dotnet pack $SOLUTION_FILE --configuration Release
+
+      - name: Push MateMachine.AdminPanel.ClientSdk to NuGet
+        run: |
+          dotnet nuget push src/sdks/**/*.nupkg --api-key ${{ steps.secretValues.outputs.NUGET-API-KEY }} --source "github"

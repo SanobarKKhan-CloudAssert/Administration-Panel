@@ -1,0 +1,18 @@
+{
+  "Routes": [
+    {
+      "Priority": 1,
+      "ServiceName": "mate_textsd",
+      "DownstreamPathTemplate": "/api/admin/text-sd/{catchAll}",
+      "UpstreamPathTemplate": "/api/admin/text-sd/{catchAll}",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Options",
+        "Post",
+        "Put",
+        "Patch",
+        "Delete"
+      ]
+    }
+  ]
+}

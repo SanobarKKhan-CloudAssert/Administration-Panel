@@ -1,0 +1,26 @@
+image: docker/compose:latest
+
+services:
+  - docker:dind
+  
+before_script:
+  # - docker version
+  # - docker-compose --version
+  - 'command -v ssh-agent >/dev/null || ( apk add openssh-client )'
+  - eval $(ssh-agent -s)
+  - cat $STAGING_PRIVATE_KEY | tr -d '\r' | ssh-add -
+  - docker context create remote --docker "host=$STAGING_SSH"
+  - unset DOCKER_HOST
+  - docker context use remote
+
+build:
+  tags:
+    - "10081"
+  stage: build
+  script:
+    - env | grep -E "^(LAB_|DB_|REDIS_|SERVER_|SMTP_)" | sed -e  's/DOCKER_ENV_//g' > build.env
+    - env | grep -E "^(LAB_|SMTP_|FIREBASE_)" | sed -e  's/DOCKER_ENV_//g' > run.env
+    - docker-compose --env-file build.env build
+    - docker-compose --env-file run.env --context remote up -d
+  only:
+    - master
